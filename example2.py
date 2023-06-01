@@ -19,7 +19,7 @@ c.pack()
 
 
 #Placing blocks by coordinates assuming all blacks are the same size and 20x20 pixels
-map = [ (0,1),(0,2),(0,3), (3,4) , (5,10) , (9,0) , (10,3)]
+map = [ (2,1),(0,2),(0,3), (3,4) , (5,10) , (9,0) , (10,3)]
 walls = []
 for i in map:
     x1 = i[0]*20 + 5
