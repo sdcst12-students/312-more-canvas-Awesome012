@@ -51,7 +51,8 @@ def leftKey(e):
     x=-5
     y=0
     try:
-        isCollision()
+        assert isCollision() != "1" 
+        assert isCollision() != "4"
         c.move(rec,x,y)
     except:
         None
@@ -61,7 +62,8 @@ def rightKey(e):
     x=5
     y=0
     try:
-        isCollision()
+        assert isCollision() != "2"
+        assert isCollision() != "3"
         c.move(rec,x,y)
     except:
         None
@@ -70,7 +72,8 @@ def upKey(e):
     x=0
     y=-5
     try:
-        isCollision()
+        assert isCollision() != "1"
+        assert isCollision() != "3"
         c.move(rec,x,y)
     except:
         None
@@ -79,7 +82,8 @@ def downKey(e):
     x=0
     y=5
     try:
-        isCollision()
+        assert isCollision() != "2"
+        assert isCollision() != "4"
         c.move(rec,x,y)
     except:
         None
@@ -91,22 +95,29 @@ w.bind("<Down>",downKey)
 create()
 
 def isCollision():
-    awesome = False
+    awesome = ""
     for i in walls:
-        print(i, c.bbox(i))
         q = c.bbox(i)
         x = c.bbox(rec)
         q = c.bbox(i)
-        x = c.bbox(rec)
-        if x[0] == q[2]:
-            awesome = True
-        elif x[1] == q[3]:
-            awesome = True
-        elif x[2] == q[0]:
-            awesome = True
-        elif x[3] == q[1]:
-            awesome = True
-    return awesome
+        q = list(q)
+        x = list(x)
+        if q[1] <= x[1] <= q[3] and q[0] <= x[0] <= q[2]:
+            awesome = "1"
+            print(awesome)
+            return awesome
+        elif q[3] >= x[3] >= q[1] and q[2] >= x[2] >= q[0]:
+            awesome = "2"
+            print(awesome)
+            return awesome
+        elif q[2] >= x[2] >= q[0] and q[1] <= x[1] <= q[3]:
+            awesome = "3"
+            print(awesome)
+            return awesome
+        elif q[0] <= x[0] <= q[2] and q[3] >= x[3] >= q[1]:
+            awesome = "4"
+            print(awesome)
+            return awesome
         #check to see if collision with rectangle
         # if collision return True
 w.mainloop()
